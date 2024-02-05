@@ -13,6 +13,10 @@ import {
   Alert,
 } from "react-bootstrap";
 import { useState } from "react";
+// When your SignUpForm component makes an Axios request, it doesn't need to "know" about the Axios default settings explicitly. If the SignUpForm uses Axios to send an HTTP request, Axios automatically uses the global defaults you've configured. This means:
+// The base URL will be prepended to any request URL specified in SignUpForm, so you only need to provide the endpoint path.
+// If SignUpForm makes a POST request, Axios will use Content-Type: multipart/form-data unless specified otherwise in the request.
+// Credentials will be included with requests, which is important for APIs that require cookies or auth headers for session management.
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -25,7 +29,7 @@ const SignUpForm = () => {
 
   const { username, password1, password2 } = signUpData;
   const [errors, setErrors] = useState({});
-
+  // useHistory hook from react-router-dom programmatically navigates users around the application. The history object provides methods to manipulate the browser history, such as navigating to a new page.
   const history = useHistory();
 
   const handleChange = (event) => {
@@ -39,11 +43,13 @@ const SignUpForm = () => {
   };
 
   const handleSubmit = async (event) => {
+    // prevents the default form submission behavior, which typically causes a page reload
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
     } catch (err) {
+      // In case of an error (e.g., the username is already taken, or the password doesn't meet the requirements), it catches the exception and uses setErrors to update the errors state with the error messages returned from the API. The err.response?.data is a safe way to access the data property of the error response object, accounting for the possibility that err.response might be undefined.
       setErrors(err.response?.data);
     }
   };
