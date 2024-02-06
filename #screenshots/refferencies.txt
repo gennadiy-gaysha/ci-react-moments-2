@@ -1,0 +1,27 @@
+npx create-react-app my-app --use-npm
+cd my-app
+npm start
+
+rfce - creates a React Functional Component Export
+rafce - creates a React Arrow Function Component Export
+
+rce - cerates a React Class Export component 
+rconst - creates a Constructor
+
+clg - log sth to the console
+Sift+Ctrl+l - log sth to the console
+clo - log obj to the console along with its name as a string
+
+IN MAIN PROJECT FOLDER:
+npm install axios
+
+npm install react-bootstrap@1.6.3 bootstrap@4.6.0
+public>index.html>head>from https://react-bootstrap-v4.netlify.app/getting-started/introduction:
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+  integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+  crossorigin="anonymous"
+/>
+
+npm install react-router-dom@5.3.0

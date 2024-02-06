@@ -12,29 +12,41 @@ import axios from "axios";
 // You first need to create a context using React.createContext(). This returns a context object with two components: a Provider and a Consumer. In most cases with hooks, you will only use the Provider and the useContext hook itself.
 
 //When you define a context with createContext(), you're setting up the infrastructure to share values across components, but initially, the Provider component doesn't have a value to provide until you explicitly define it.
+
+// Step 1: Creating Contexts:
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
 function App() {
   // We’ll use it to persist the state of the  currently logged in user.
+
+  // Step 2: Initializing State with useState
   const [currentUser, setCurrentUser] = useState(null);
 
   const handleMount = async () => {
     try {
       // The response from the Axios request is destructured to extract the data property directly. This is a JavaScript ES6 feature known as object destructuring, which allows you to unpack values from objects into distinct variables. Here, instead of getting the whole response object and accessing the data with response.data, you directly get the data property, making the code cleaner and more direct.
       const { data } = await axios.get("/dj-rest-auth/user/");
-      console.log(data);
       setCurrentUser(data);
+      console.log("Current User:", data); // Log the current user data to the console
     } catch (err) {
       console.log(err);
     }
   };
 
+  // Upon mounting the App component, you use the useEffect hook to execute handleMount, which makes an HTTP GET request to "/dj-rest-auth/user/" to fetch the current user data. If successful, it updates the currentUser state.
+
+  // Step 3: Fetching Current User Data
   useEffect(() => {
     handleMount();
   }, []);
 
+  useEffect(() => {
+    console.log("Current User:", currentUser);
+  }, [currentUser]); // This useEffect will run every time currentUser changes
+
   return (
+    // Step 4: Providing Contexts:
     <CurrentUserContext.Provider value={currentUser}>
       <SetCurrentUserContext.Provider value={setCurrentUser}>
         <div className={styles.App}>
