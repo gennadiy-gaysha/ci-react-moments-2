@@ -15,3 +15,6 @@ axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 // Enabling withCredentials ensures that cookies and authentication headers are included in cross-origin requests, facilitating authenticated sessions between your frontend and backend.
 // This configuration tells Axios to send credentials (such as cookies or HTTP authentication) with every request. This is crucial for making requests to APIs where authentication and session management are handled with cookies or other HTTP authentication methods. Setting withCredentials to true is necessary when your frontend and backend are served from different domains (or subdomains) and you need to maintain a user session across these domains. It enables browsers to include cookies and authorization headers in your cross-origin requests to the backend.
 axios.defaults.withCredentials = true;
+
+export const axiosReq = axios.create();
+export const axiosRes = axios.create();
