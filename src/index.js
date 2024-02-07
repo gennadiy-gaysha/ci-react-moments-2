@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 
 // This snippet was automatically created when running npx create-react-app .
 // const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,7 +17,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <CurrentUserProvider>
+        <App />
+      </CurrentUserProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
