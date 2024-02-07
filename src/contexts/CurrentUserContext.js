@@ -20,7 +20,7 @@ export const CurrentUserProvider = ({ children }) => {
   const handleMount = async () => {
     try {
       // The response from the Axios request is destructured to extract the data property directly. This is a JavaScript ES6 feature known as object destructuring, which allows you to unpack values from objects into distinct variables. Here, instead of getting the whole response object and accessing the data with response.data, you directly get the data property, making the code cleaner and more direct.
-      const { data } = await axios.get("/dj-rest-auth/user/");
+      const { data } = await axiosRes.get("/dj-rest-auth/user/");
       setCurrentUser(data);
       console.log("Current User:", data); // Log the current user data to the console
     } catch (err) {
