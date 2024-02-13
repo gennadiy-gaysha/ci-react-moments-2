@@ -22,11 +22,11 @@ function PostPage() {
     const handleMount = async () => {
       try {
         // await Promise.all([...]) is used to wait for all promises passed in the array to be resolved. Here, although there's only one promise (axiosReq.get(...)), using Promise.all suggests that the pattern is designed to accommodate multiple concurrent requests if needed. This is useful for optimizing loading times by fetching multiple resources in parallel.
-        const [{ data: postData }] = await Promise.all([
+        const [{ data: post }] = await Promise.all([
           axiosReq.get(`/posts/${id}`),
           // axios.get(`/comments/?post=${id}`),
         ]);
-        setPost({ results: [postData] });
+        setPost({ results: [post] });
       } catch (err) {
         console.log(err);
       }
