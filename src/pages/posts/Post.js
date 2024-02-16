@@ -82,7 +82,7 @@ const Post = (props) => {
             <Avatar src={profile_image} hight={55} />
             {owner}
           </Link>
-          <div className="d-flex allign-items-center">
+          <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {is_owner && postPage && (
               <MoreDropdown
