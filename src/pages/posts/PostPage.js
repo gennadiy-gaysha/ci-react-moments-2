@@ -9,6 +9,9 @@ import Post from "./Post";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 function PostPage() {
   // useParams is a hook provided by the React Router library, which is used for routing in React single-page applications (SPAs). The useParams hook allows you to access the parameters of the current route. React Router uses dynamic segments in the route's path to capture values specified in the URL, and useParams lets you extract these values so you can use them in your component.
@@ -64,14 +67,20 @@ function PostPage() {
             "Comments"
           ) : null}
           {comments.results.length ? (
-            comments.results.map((comment) => (
-              <Comment
-                key={comment.id}
-                {...comment}
-                setPost={setPost}
-                setComments={setComments}
-              />
-            ))
+            <InfiniteScroll
+              next={() => fetchMoreData(comments, setComments)}
+              hasMore={!!comments.next}
+              loader={<Asset spinner />}
+              dataLength={comments.results.length}
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setPost={setPost}
+                  setComments={setComments}
+                />
+              ))}
+            />
           ) : (
             <span>No comments yet, be the first to comment!</span>
           )}
