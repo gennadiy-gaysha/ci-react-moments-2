@@ -4,8 +4,9 @@ import { Container } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Asset from "../../components/Asset";
+import Profile from "./Profile";
 
-const PopularProfiles = () => {
+const PopularProfiles = ({ mobile }) => {
   const [profileData, setProfileData] = useState({
     // We will use the pagePofile later!
     pageProfile: { results: [] },
@@ -14,7 +15,6 @@ const PopularProfiles = () => {
 
   const { popularProfiles } = profileData;
   const currentUser = useCurrentUser();
-  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -34,13 +34,25 @@ const PopularProfiles = () => {
   }, [currentUser]);
 
   return (
-    <Container className={appStyles.Content}>
+    <Container
+      className={`${appStyles.Content} ${
+        mobile && "d-lg-none text-center mb-3"
+      }`}
+    >
       {popularProfiles.results.length ? (
         <>
           <p>Most followed profiles.</p>
-          {popularProfiles.results.map((profile) => (
-            <p key={profile.id}>{profile.owner}</p>
-          ))}
+          {mobile ? (
+            <div className="d-flex justify-content-around">
+              {popularProfiles.results.slice(0, 4).map((profile) => (
+                <Profile key={profile.id} profile={profile} mobile />
+              ))}
+            </div>
+          ) : (
+            popularProfiles.results.map((profile) => (
+              <Profile key={profile.id} profile={profile} />
+            ))
+          )}
         </>
       ) : (
         <Asset spinner />
