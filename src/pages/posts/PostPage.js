@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import CommentCreateForm from "../comments/CommentCreateForm";
@@ -12,6 +12,7 @@ import Comment from "../comments/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function PostPage() {
   // useParams is a hook provided by the React Router library, which is used for routing in React single-page applications (SPAs). The useParams hook allows you to access the parameters of the current route. React Router uses dynamic segments in the route's path to capture values specified in the URL, and useParams lets you extract these values so you can use them in your component.
@@ -49,7 +50,7 @@ function PostPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles for mobile</p>
+        <PopularProfiles mobile />
         {/* Passing an object as props from a parent component to a childmcomponent:  
         Alternatively, you can spread the object's properties so that each property becomes its own prop on the child component. This approach can make it easier to work with individual properties in the child component, especially if the child only needs to use a few properties from the object.*/}
         <Post {...post.results[0]} setPosts={setPost} postPage />
@@ -87,7 +88,7 @@ function PostPage() {
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        Popular profiles for desktop
+        <PopularProfiles />
       </Col>
     </Row>
   );
