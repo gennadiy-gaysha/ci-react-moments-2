@@ -16,10 +16,12 @@ import appStyles from "../../App.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function SignInForm() {
   // Step 5: Consuming Contexts
   const setCurrentUser = useSetCurrentUser();
+  useRedirect("loggedIn");
 
   // distructuring assignment for an object:
   const [signInData, setSignInData] = useState({
@@ -45,7 +47,8 @@ function SignInForm() {
       // This line suggests that the response (data) from the server includes a user object, which contains information about the currently logged-in user. You then set this user object as the value of currentUser by calling setCurrentUser(data.user).
       // You can use setCurrentUser(data.user); because you've "consumed" the SetCurrentUserContext higher up in the component using the useContext hook. By doing this, you gain access to the setCurrentUser function, which was provided via the SetCurrentUserContext.Provider in your App.js component.
       setCurrentUser(data.user);
-      history.push("/");
+      // history.push("/");
+      history.goBack();
     } catch (err) {
       setErrors(err.response?.data);
     }

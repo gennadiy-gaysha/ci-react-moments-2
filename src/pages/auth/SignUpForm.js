@@ -19,8 +19,10 @@ import { useState } from "react";
 // Credentials will be included with requests, which is important for APIs that require cookies or auth headers for session management.
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
+  useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
