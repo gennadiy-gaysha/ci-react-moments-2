@@ -60,7 +60,7 @@ const Post = (props) => {
 
   const handleUnlike = async () => {
     try {
-      const { data } = await axiosRes.delete(`/likes/${like_id}`);
+      await axiosRes.delete(`/likes/${like_id}`);
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
@@ -78,7 +78,7 @@ const Post = (props) => {
     <Card className={styles.Post}>
       <Card.Body>
         <Media className="allign-items-center justify-content-between">
-          <Link to={`/profile/${profile_id}`}>
+          <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profile_image} hight={55} />
             {owner}
           </Link>

@@ -23,9 +23,12 @@ const Profile = (props) => {
           <Avatar src={image} height={imageSize} />
         </Link>
       </div>
-      <div className={`mx-2 ${styles.WordBreak}`}>
-        <strong>{owner}</strong>
-      </div>
+      <Link to={`/profiles/${id}`}>
+        <div className={`mx-2 ${styles.WordBreak}`}>
+          <strong>{owner}</strong>
+        </div>
+      </Link>
+
       <div className={`text-right ${!mobile && "ml-auto"}`}>
         {!mobile &&
           currentUser &&
