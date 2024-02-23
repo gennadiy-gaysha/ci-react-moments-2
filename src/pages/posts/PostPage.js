@@ -42,10 +42,10 @@ function PostPage() {
     handleMount();
   }, [id]);
 
-  useEffect(() => {
-    // Existing code to fetch and set data
-    console.log("First item in results array:", post.results[0]);
-  }, [post]); // Add 'post' to the dependency array to log whenever 'post' changes
+  // useEffect(() => {
+  //   // Existing code to fetch and set data
+  //   console.log("First item in results array:", post.results[0]);
+  // }, [post]); // Add 'post' to the dependency array to log whenever 'post' changes
 
   return (
     <Row className="h-100">

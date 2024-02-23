@@ -9,7 +9,7 @@ const useClickOutsideToggle = () => {
       if (ref.current && !ref.current.contains(event.target)) {
         setExpanded(false);
         //  Inside handleClickOutside(event), you can access the event object to find out information about the event and react accordingly. For example, you can check event.target to see which element was interacted with.
-        console.log(event.target);
+        // console.log(event.target);
       }
     };
     // 1) You're telling the browser to listen for "mouseup" events on the entire document. You can replace "mouseup" with other event types (like "click", "mousedown", "mousemove", etc.) depending on what kind of user interaction you want to respond to.
