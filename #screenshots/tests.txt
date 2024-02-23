@@ -1,0 +1,45 @@
+1. > npm install msw@^0.35.0
+
+2. Step 1.1: Ensure Babel is Set Up
+First, ensure that Babel is properly set up in your project to transpile modern JavaScript syntax for Jest. You need @babel/core and relevant presets like @babel/preset-env for JavaScript and @babel/preset-react for React.
+Install Babel and Presets (if not already installed):
+> npm install --save-dev @babel/core @babel/preset-env @babel/preset-react
+
+Step 1.2: Create or update your Babel configuration file (babel.config.js) at the project root:
+* module.exports = {
+  presets: ['@babel/preset-env', '@babel/preset-react'],
+};
+
+3. Step 2.1: Configure Jest to Transform ES Modules
+If your project uses ECMAScript modules, you need to configure Jest to handle them, including transforming modules from node_modules like axios.
+babel-jest is usually included with Jest, but installing it explicitly can help ensure compatibility.
+Install babel-jest if not already installed:
+> npm install --save-dev babel-jest
+
+4. Add or update Jest configuration in package.json or in a separate Jest configuration file (jest.config.js):
+This configuration tells Jest to use babel-jest to transform files with .js, .jsx, .ts, and .tsx extensions. It also customizes the transformIgnorePatterns to ensure axios is transformed, allowing Jest to understand the import statement in axios.
+<package.json>
+* "jest": {
+  "transform": {
+    "^.+\\.[t|j]sx?$": "babel-jest"
+  },
+  "transformIgnorePatterns": [
+    "node_modules/(?!(axios)/)"
+  ]
+}
+
+Or, if you prefer using a separate jest.config.js file:
+<jest.config.js>
+* module.exports = {
+  transform: {
+    '^.+\\.[t|j]sx?$': 'babel-jest',
+  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(axios)/)',
+  ],
+};
+
+
+
+
+

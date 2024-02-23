@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
@@ -66,6 +65,7 @@ const NavBar = () => {
         <Avatar
           src={currentUser?.profile_image}
           text={currentUser?.username}
+          // text="Profile" // only fo testing!!!
           height={40}
         />
       </NavLink>
