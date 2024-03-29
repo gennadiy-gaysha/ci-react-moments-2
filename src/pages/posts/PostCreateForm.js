@@ -161,13 +161,11 @@ function PostCreateForm() {
                 ref={imageInput}
               />
             </Form.Group>
-            {errors?.image?.map((message, i) => {
-              return (
-                <Alert variant="warning" key={i}>
-                  {message}
-                </Alert>
-              );
-            })}
+            {errors?.image?.map((message, i) => (
+              <Alert variant="warning" key={i}>
+                {message}
+              </Alert>
+            ))}
 
             <div className="d-md-none">{textFields}</div>
           </Container>
